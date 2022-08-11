@@ -78,4 +78,11 @@ class AuthRepositoryImp extends AuthRepository {
     await googleSignIn.signOut();
     await _firebaseAuth.signOut();
   }
+
+  @override
+  Future<void> cancel() async {
+    final googleSignIn = GoogleSignIn();
+    await googleSignIn.signOut();
+    await _firebaseAuth.signOut();
+  }
 }

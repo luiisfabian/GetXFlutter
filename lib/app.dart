@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_flutter/controllers/auth_controller.dart';
-import 'package:getx_flutter/repository/auth_repository.dart';
+import 'package:getx_flutter/navigation/routes.dart';
 
-import 'navigation/routes.dart';
+import 'controllers/auth_controller.dart';
+
 
 class MyApp extends StatelessWidget {
   final authController = Get.put(AuthController());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder(
       init: authController,
-      builder: (AuthController authController) {
+      builder: (_) {
         return const MaterialApp(
           title: "Authentication Flow",
           onGenerateRoute: Routes.routes,

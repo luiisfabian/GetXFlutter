@@ -4,7 +4,7 @@ import 'package:getx_flutter/repository/auth_repository.dart';
 import 'package:get/get.dart';
 
 
-class SignInController extends GetxController{
+class HomeSignInController extends GetxController{
   final _authRepository = Get.find<AuthRepository>();
 
   final error = Rx<String?>(null);

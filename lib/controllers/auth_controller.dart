@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 
+import '../navigation/routes.dart';
 import '../repository/auth_repository.dart';
 
 enum AuthState { signedOut, signedIn }
@@ -17,8 +18,10 @@ class AuthController extends GetxController {
     if (user == null) {
       authState.value = AuthState.signedOut;
       //TODO entrar al inicio de la app
+      Get.offAllNamed(Routes.intro);
     } else {
       authState.value = AuthState.signedIn;
+      Get.offAllNamed(Routes.home);
     }
     authUser.value = user;
   }
@@ -36,7 +39,7 @@ class AuthController extends GetxController {
   }
 
   @override
-  void onClose(){
+  void onClose() {
     _authRepository.cancel();
     super.onClose();
   }

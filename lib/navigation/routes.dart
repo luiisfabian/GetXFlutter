@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'package:get/get_navigation/src/routes/default_route.dart';
+import 'package:get/get.dart';
+
+import '../ui/intro_page.dart';
+import '../ui/splash_page.dart';
+
 
 class Routes {
   static const splash = '/';
@@ -10,7 +14,10 @@ class Routes {
 
   static Route routes(RouteSettings settings) {
     switch (settings.name) {
-      case 'splash':
+      case splash:
+        return _buildRoute(settings, page:  SplashPage());
+      case intro:
+        return _buildRoute(settings, page:  IntroPage());
       default:
         throw Exception("this route not exist");
     }

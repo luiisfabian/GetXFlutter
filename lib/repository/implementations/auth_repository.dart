@@ -12,6 +12,9 @@ class AuthRepositoryImp extends AuthRepository {
   @override
   AuthUser? get authUser => _userFromFirebase(_firebaseAuth.currentUser);
 
+    @override
+  Stream<AuthUser?> get onAuthStateChange => _firebaseAuth.authStateChanges().asyncMap(_userFromFirebase);
+
   @override
   Future<AuthUser?> createUserWithEmailAndPassword(
       String email, String password) async {
@@ -20,8 +23,7 @@ class AuthRepositoryImp extends AuthRepository {
     return _userFromFirebase(authResult.user);
   }
 
-  @override
-  Stream<AuthUser?> get onAuthStateChange => throw UnimplementedError();
+
 
   @override
   Future<AuthUser?> signInAnonymously() async {
@@ -85,4 +87,6 @@ class AuthRepositoryImp extends AuthRepository {
     await googleSignIn.signOut();
     await _firebaseAuth.signOut();
   }
+  
+
 }

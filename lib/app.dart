@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return GetBuilder(
       init: authController,
       builder: (_) {
-        return const MaterialApp(
+        return const GetMaterialApp(
           title: "Authentication Flow",
           onGenerateRoute: Routes.routes,
         );

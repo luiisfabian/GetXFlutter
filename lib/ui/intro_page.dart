@@ -36,17 +36,21 @@ class _IntroPager extends HookWidget {
         indicatorSelectorColor: Colors.black,
         length: 4,
         child: PageView(
+          
           children: [
-             const _descriptionPage(
+            const _descriptionPage(
                 text: "exampleText", imagenPath: 'assets/intro_1.png'),
-             const _descriptionPage(
+            const _descriptionPage(
                 text: "exampleText", imagenPath: 'assets/intro_2.png'),
-             const _descriptionPage(
+            const _descriptionPage(
                 text: "exampleText", imagenPath: 'assets/intro_3.png'),
+            _loginPage(),
           ],
           controller: usePageController(),
+          
         ),
       ),
+      
     );
   }
 }
@@ -140,7 +144,7 @@ class _loginPage extends StatelessWidget {
                   height: 8,
                 ),
                 _loginButton(
-                  text: "Sign In With Facebook",
+                  text: "Sign In With Facebook", textColor: Colors.white,
                   imagePath: 'assets/icon_facebook.png',
                   color: Colors.blueAccent,
                   onTap: () => homeSignInController.signInWithFacebook(),
@@ -199,7 +203,7 @@ class _loginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: color,
-      elevation: 3,
+      elevation: 4,
       borderRadius: BorderRadius.circular(5),
       child: InkWell(
         onTap: onTap,

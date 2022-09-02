@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:getx_flutter/ui/email_create_page.dart';
+import 'package:getx_flutter/ui/email_signIn_page.dart';
 import 'package:getx_flutter/ui/home_page.dart';
 
 import '../ui/intro_page.dart';
@@ -23,6 +24,8 @@ class Routes {
         return _buildRoute(settings, page: HomePage());
       case createAccount:
         return _buildRoute(settings, page: EmailCreatePage());
+      case signInEmail:
+        return _buildRoute(settings, page: EmailSignInPage());
       default:
         throw Exception("this route not exist");
     }

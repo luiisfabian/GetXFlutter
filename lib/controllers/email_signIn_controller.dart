@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:getx_flutter/controllers/auth_controller.dart';
 import 'package:getx_flutter/repository/auth_repository.dart';
 
-class SignInController extends GetxController {
+class EmailSignInController extends GetxController {
   final _authRepository = Get.find<AuthRepository>();
 
   final emailController = TextEditingController();

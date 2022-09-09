@@ -29,7 +29,7 @@ class MyUserController extends GetxController {
   }
 
 
-  void SetImage(File? imageFile) async{
+  void setImage(File? imageFile) async{
     pickedImage.value = imageFile;
   }
   

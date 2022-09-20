@@ -28,9 +28,6 @@ class MyUser extends Equatable {
     age = data['age'] as int,
     image = data['image'] as String?;
     
-
-
-
       @override
       // TODO: implement props
       List<Object?> get props => [id, name, lastName, age, image];

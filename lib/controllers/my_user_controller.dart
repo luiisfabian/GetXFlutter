@@ -9,8 +9,6 @@ import 'package:getx_flutter/repository/my_user_repository.dart';
 import 'auth_controller.dart';
 
 class MyUserController extends GetxController {
-
-
   final _userRepository = Get.find<MyUserRepository>();
   final nameController = TextEditingController();
   final lastNameController = TextEditingController();
@@ -28,36 +26,32 @@ class MyUserController extends GetxController {
     super.onInit();
   }
 
-
-  void setImage(File? imageFile) async{
+  void setImage(File? imageFile) async {
     pickedImage.value = imageFile;
   }
-  
+
   Future<void> getMyUser() async {
     isLoading.value = true;
     user.value = await _userRepository.getMyUser();
     nameController.text = user.value?.name ?? '';
-    lastNameController.text = user.value?.lastName ?? ''; 
-    ageController.text = user.value?.age.toString() ?? ''; 
+    lastNameController.text = user.value?.lastName ?? '';
+    ageController.text = user.value?.age.toString() ?? '';
     isLoading.value = false;
   }
 
-  Future<void> saveMyUser() async{
-    isSaving.value= true;
+  Future<void> saveMyUser() async {
+    isSaving.value = true;
     final uid = Get.find<AuthController>().authUser.value!.uid;
     final name = nameController.text;
     final lastName = lastNameController.text;
     final age = int.tryParse(ageController.text) ?? 0;
     final newUser = MyUser(uid, name, lastName, age, image: user.value?.image);
 
+    print(newUser);
     user.value = newUser;
 
     await Future.delayed(Duration(seconds: 3));
-    await _userRepository.saveMyUser(newUser, pickedImage.value); 
+    await _userRepository.saveMyUser(newUser, pickedImage.value);
     isSaving.value = false;
   }
-
-
-
-
 }

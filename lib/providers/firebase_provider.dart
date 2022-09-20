@@ -42,6 +42,8 @@ class FirebaseProvider{
       await storageRef.putFile(image);
       final url = await storageRef.getDownloadURL();
       await ref.set(user.toFirebaseApp(newImage: url), SetOptions(merge: true));
+    }else{
+     await ref.set(user.toFirebaseApp(newImage: null), SetOptions(merge: true));
     }
   }
 }

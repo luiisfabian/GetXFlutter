@@ -13,7 +13,7 @@ class IntroPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("WELCOME"),
+        title: const Text(""),
       ),
       body: _IntroPager(),
     );
@@ -39,11 +39,11 @@ class _IntroPager extends HookWidget {
           
           children: [
             const _descriptionPage(
-                text: "exampleText", imagenPath: 'assets/intro_1.png'),
+                text: "Proyecto U", imagenPath: 'assets/intro_1.png'),
             const _descriptionPage(
-                text: "exampleText", imagenPath: 'assets/intro_2.png'),
+                text: "Universidad de caldas", imagenPath: 'assets/intro_2.png'),
             const _descriptionPage(
-                text: "exampleText", imagenPath: 'assets/intro_3.png'),
+                text: "Dispositivos Moviles", imagenPath: 'assets/intro_3.png'),
             _loginPage(),
           ],
           controller: usePageController(),

@@ -136,22 +136,22 @@ class _loginPage extends StatelessWidget {
                 _loginButton(
                   text: "Sign In With Google",
                   imagePath: 'assets/icon_google.png',
-                  color: Colors.white,
-                  textColor: Colors.grey,
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  textColor: Color.fromARGB(255, 0, 0, 0),
                   onTap: () => homeSignInController.signInWithGoogle(),
                 ),
                 const SizedBox(
                   height: 8,
                 ),
-                _loginButton(
-                  text: "Sign In With Facebook", textColor: Colors.white,
-                  imagePath: 'assets/icon_facebook.png',
-                  color: Colors.blueAccent,
-                  onTap: () => homeSignInController.signInWithFacebook(),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
+                // _loginButton(
+                //   text: "Sign In With Facebook", textColor: Colors.white,
+                //   imagePath: 'assets/icon_facebook.png',
+                //   color: Colors.blueAccent,
+                //   onTap: () => homeSignInController.signInWithFacebook(),
+                // ),
+                // const SizedBox(
+                //   height: 8,
+                // ),
                 _loginButton(
                     text: "Sign In Email",
                     imagePath: 'assets/icon_email.png',

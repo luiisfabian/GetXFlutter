@@ -18,7 +18,10 @@ class EmailCreateController extends GetxController {
   }
 
   String? PasswordValidator(String? value) {
+        bool hasUppercase = value!.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
+
     if (value == null || value.isEmpty) return "Requiered this field";
+    if (hasUppercase) return "Required Special Chrecters";
     if (value.length <= 6) return "El password is may to 6 ccaracteres";
     if (passwordController.text != repeatPasswordController.text) {
       return "Los password no son similares";

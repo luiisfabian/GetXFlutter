@@ -2,11 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_flutter/controllers/email_create_controller.dart';
 
-class EmailCreatePage extends StatelessWidget {
+import '../controllers/email_signIn_controller.dart';
+
+class EmailCreatePage extends StatefulWidget {
   EmailCreatePage({super.key});
 
-  final _formKey = GlobalKey<FormState>();
+  @override
+  State<EmailCreatePage> createState() => _EmailCreatePageState();
+}
 
+class _EmailCreatePageState extends State<EmailCreatePage> {
+  final _formKey = GlobalKey<FormState>();
+      final emailController = Get.put(EmailSignInController());
+
+    String? password;
+
+  bool _passwordVisible = false;
+
+  bool _obscureText = true;
+
+  void _toggle() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
+  @override
+  void initState() {
+    _passwordVisible = false;
+
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     final emailController = Get.put(EmailCreateController());
@@ -51,19 +77,53 @@ class EmailCreatePage extends StatelessWidget {
                 const SizedBox(
                   height: 8,
                 ),
+                // TextFormField(
+                //   controller: emailController.passwordController,
+                //   decoration: InputDecoration(labelText: "Password"),
+                //   validator: emailController.PasswordValidator,
+                // ),
                 TextFormField(
-                  controller: emailController.passwordController,
-                  decoration: InputDecoration(labelText: "Password"),
-                  validator: emailController.PasswordValidator,
-                ),
+                          controller: emailController.passwordController,
+                          obscureText: _obscureText,
+                          enableSuggestions: false,
+                          autocorrect: false,
+                          keyboardType: TextInputType.visiblePassword,
+                          decoration: InputDecoration(
+                            suffixIcon: IconButton(
+                              onPressed: _toggle,
+                              icon: _obscureText
+                                  ? Icon(Icons.visibility)
+                                  : Icon(Icons.visibility_off),
+                            ),
+                            labelText: "Contraseña",
+                          ),
+                          validator: emailController.PasswordValidator
+                        ),
                 const SizedBox(
                   height: 8,
                 ),
-                TextFormField(
-                  controller: emailController.repeatPasswordController,
-                  decoration: InputDecoration(labelText: "Repeat Password"),
-                  validator: emailController.PasswordValidator,
-                ),
+                // TextFormField(
+                //   controller: emailController.repeatPasswordController,
+                //   decoration: InputDecoration(labelText: "Repeat Password"),
+                //   validator: emailController.PasswordValidator,
+                // ),
+                 TextFormField(
+                          controller: emailController.repeatPasswordController,
+                          obscureText: _obscureText,
+                          enableSuggestions: false,
+                          autocorrect: false,
+                          keyboardType: TextInputType.visiblePassword,
+                          decoration: InputDecoration(
+                            suffixIcon: IconButton(
+                              onPressed: _toggle,
+                              icon: _obscureText
+                                  ? Icon(Icons.visibility)
+                                  : Icon(Icons.visibility_off),
+                            ),
+                            labelText: "Repetir Password",
+                          ),
+                          validator: emailController.PasswordValidator
+                        ),
                 const SizedBox(
                   height: 8,
                 ),

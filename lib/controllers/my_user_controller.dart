@@ -12,7 +12,9 @@ class MyUserController extends GetxController {
   final _userRepository = Get.find<MyUserRepository>();
   final nameController = TextEditingController();
   final lastNameController = TextEditingController();
+  final dataPolicy = TextEditingValue();
   final ageController = TextEditingController();
+  final phoneController = TextEditingController();
 
   Rx<File?> pickedImage = Rx(null);
   Rx<bool> isLoading = Rx(false);
@@ -36,6 +38,12 @@ class MyUserController extends GetxController {
     nameController.text = user.value?.name ?? '';
     lastNameController.text = user.value?.lastName ?? '';
     ageController.text = user.value?.age.toString() ?? '';
+    if (user.value?.phone == null) {
+      phoneController.text = " ";
+    } else {
+      phoneController.text = user.value?.phone.toString() ?? '';
+    }
+    // dataPolicy.selection = false;
     isLoading.value = false;
   }
 
@@ -45,7 +53,9 @@ class MyUserController extends GetxController {
     final name = nameController.text;
     final lastName = lastNameController.text;
     final age = int.tryParse(ageController.text) ?? 0;
-    final newUser = MyUser(uid, name, lastName, age, image: user.value?.image);
+    final phone = int.tryParse(ageController.text) ?? 0;
+    final newUser =
+        MyUser(uid, name, lastName, age, phone, image: user.value?.image);
 
     print(newUser);
     user.value = newUser;

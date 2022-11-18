@@ -11,10 +11,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return GetBuilder(
+      
       init: authController,
       builder: (_) {
         return const GetMaterialApp(
+          debugShowCheckedModeBanner: false,
           title: "Authentication Flow",
           onGenerateRoute: Routes.routes,
         );

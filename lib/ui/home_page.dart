@@ -7,6 +7,8 @@ import 'package:getx_flutter/controllers/auth_controller.dart';
 import 'package:getx_flutter/controllers/my_user_controller.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../navigation/routes.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -15,7 +17,12 @@ class HomePage extends StatelessWidget {
     final userController = Get.put(MyUserController());
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home PAge"),
+        leading: IconButton(
+            onPressed: () {
+              Get.offAllNamed(Routes.food_menu);
+            },
+            icon: Icon(Icons.arrow_back)),
+        title: Text("Profile Page"),
         actions: [
           IconButton(
             onPressed: () => Get.find<AuthController>().signedOut(),
@@ -28,6 +35,7 @@ class HomePage extends StatelessWidget {
         if (userController.isLoading.value) {
           return const Center(child: CircularProgressIndicator());
         }
+        // return _MyUserSection();
         return _MyUserSection();
       }),
     );
@@ -119,8 +127,24 @@ class _MyUserSection extends StatelessWidget {
               keyboardType: TextInputType.number,
               decoration: InputDecoration(labelText: "Age"),
             ),
+            TextField(
+              controller: userController.phoneController,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(labelText: "Phone"),
+            ),
             SizedBox(
               height: 8,
+            ),
+            Column(
+              children: [
+                Text("Al Precionar la palabra Guardar estara aceptando la"),
+                TextButton(
+                  onPressed: () {
+                    showAlertDialog(context);
+                  },
+                  child: Text("Politica de Datos"),
+                ),
+              ],
             ),
             Obx(() {
               final isSaving = userController.isSaving.value;
@@ -128,8 +152,12 @@ class _MyUserSection extends StatelessWidget {
                 alignment: Alignment.center,
                 children: [
                   ElevatedButton(
-                    onPressed:
-                        isSaving ? null : () => userController.saveMyUser(),
+                    onPressed: isSaving
+                        ? null
+                        : () {
+                            userController.saveMyUser();
+                            Get.offAllNamed(Routes.food_menu);
+                          },
                     child: Text("Guardar"),
                   ),
                   if (isSaving) CircularProgressIndicator(),
@@ -139,6 +167,34 @@ class _MyUserSection extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  showAlertDialog(BuildContext context) {
+    // set up the button
+    Widget okButton = TextButton(
+      child: Text("Aceptar"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Politica de Datos"),
+      content: Text(
+          " te informa sobre su Política de Privacidad respecto del tratamiento y protección de los datos de carácter personal de los usuarios y clientes que puedan ser recabados por la navegación o contratación de servicios a través del sitio Fabian Company. En este sentido, el Titular garantiza el cumplimiento de la normativa vigente en materia de protección de datos personales, reflejada en la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y de Garantía de Derechos Digitales (LOPD GDD). Cumple también con el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo de 27 de abril de 2016 relativo a la protección de las personas físicas (RGPD). El uso de sitio Web implica la aceptación de esta Política de Privacidad así como las condiciones incluidas en el Aviso Legal."),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }

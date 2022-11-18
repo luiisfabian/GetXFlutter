@@ -21,7 +21,7 @@ class AuthController extends GetxController {
       Get.offAllNamed(Routes.intro);
     } else {
       authState.value = AuthState.signedIn;
-      Get.offAllNamed(Routes.home);
+      Get.offAllNamed(Routes.food_menu);
     }
     authUser.value = user;
   }
